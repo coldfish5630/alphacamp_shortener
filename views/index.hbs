@@ -1,0 +1,14 @@
+{{#if sid}}
+<div class="d-flex flex-column align-items-center">
+<a href="/{{sid}}">http://localhost:3000/{{sid}}</a>
+<button class="copy-btn">Copy</button>
+</div>
+{{else}}
+<form action="/shorten" method="post" class="d-flex flex-column align-items-center">
+  <div class="form-floating mb-3 w-50">
+    <input type="text" class="form-control" name="longURL" id="long-url" placeholder="http://example.com/">
+    <label class="text-dark" for="floatingInput">Input URL</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Shorten</button>
+</form>
+{{/if}}
