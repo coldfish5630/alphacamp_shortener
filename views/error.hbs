@@ -1,3 +1,11 @@
+{{#if sid}}
 <div class="d-flex flex-column align-items-center">
 <p class="fs-3 text-white">很抱歉，您輸入的網址https://localhost:3000/{{sid}}不存在</p>
 </div>
+{{else}}
+{{#if longURL}}
+<div class="d-flex flex-column align-items-center">
+<p class="fs-3 text-white">很抱歉，您輸入的網址{{longURL}}不是正確的網址</p>
+</div>
+{{/if}}
+{{/if}}

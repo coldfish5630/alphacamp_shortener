@@ -33,10 +33,8 @@ function validateForm (longURL) {
 
 router.post('/', (req, res) => {
   const longURL = req.body.longURL.trim()
-  if (!longURL) {
-    return
-  } else if (!validateForm(longURL)) {
-    return
+  if (!longURL || !validateForm(longURL)) {
+    return res.render('error', { longURL })
   }
   //從資料庫尋找是否有相同的網址
   Shortener.find({ url: `${longURL}` }, (err, result) => {
