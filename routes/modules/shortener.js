@@ -25,8 +25,18 @@ function shortener () {
   })
 }
 
+function validateForm (longURL) {
+  const re = /http:\/\/|https:\/\//
+  return re.test(longURL)
+}
+
 router.post('/', (req, res) => {
   const longURL = req.body.longURL.trim()
+  if (!longURL) {
+    return
+  } else if (!validateForm(longURL)) {
+    return
+  }
   Shortener.find({ url: `${longURL}` }, (err, result) => {
     const url = result
     if (err) {

@@ -1,14 +1,15 @@
 {{#if sid}}
 <div class="d-flex flex-column align-items-center">
-<a href="/{{sid}}">http://localhost:3000/{{sid}}</a>
-<button class="copy-btn">Copy</button>
+<p class="fs-5 text-white">Success!</p>
+<a class="fs-5 mb-3 text-info text-decoration-none" id="short-url" href="/{{sid}}">http://localhost:3000/{{sid}}</a>
+<button type="button" class="btn btn-primary" id="copy-btn" onclick="onCopyBtnClick()">Copy</button>
 </div>
 {{else}}
-<form action="/shorten" method="post" class="d-flex flex-column align-items-center">
-  <div class="form-floating mb-3 w-50">
-    <input type="text" class="form-control" name="longURL" id="long-url" placeholder="http://example.com/">
-    <label class="text-dark" for="floatingInput">Input URL</label>
+<form action="/shorten" method="post" class="d-flex flex-column align-items-center needs-validation" id="shorten-form" novalidate>
+  <div class="mb-3 w-75">
+    <input type="text" class="form-control" name="longURL" id="long-url" placeholder="https://example.com/" required>
+    <div id="alert-label" class="invalid-feedback"></div>
   </div>
-  <button type="submit" class="btn btn-primary">Shorten</button>
+  <button type="submit" id="shorten-btn" class="btn btn-primary">Shorten</button>
 </form>
 {{/if}}
