@@ -13,12 +13,14 @@ form.addEventListener('submit', function onFormSubmit (event) {
   }
 })
 
-// copyButton.addEventListener('click', function onCopyBtnClick (event) {
-//   console.log(event.target)
-//   const url = document.querySelector('#short-url').textContent
-//   console.log(url)
-//   navigator.clipboard
-//     .writeText(url)
-//     .then(() => alert('Success Copy!'))
-//     .catch(() => alert('something wrong!'))
-// })
+const copyButton = document.querySelector('#copy-btn')
+
+copyButton.addEventListener('click', function onCopyBtnClick (event) {
+  console.log(event.target)
+  const url = document.querySelector('#short-url').textContent
+  console.log(url)
+  navigator.clipboard
+    .writeText(url)
+    .then(() => alert('Success Copy!'))
+    .catch(() => alert('something wrong!'))
+})

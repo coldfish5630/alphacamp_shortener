@@ -15,7 +15,7 @@ router.get('/:sid', (req, res) => {
       console.log(err)
     }
     if (!result.length) {
-      console.log('the page is not exists')
+      res.render('error', { sid })
     } else if (result.length) {
       res.redirect(`${link[0].url}`)
     }

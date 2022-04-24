@@ -12,6 +12,7 @@ function shortener () {
       arr.push(charsArr[num])
     }
     const sid = arr.join('')
+    //確認sid是否與資料庫有重複
     Shortener.find({ sid: `${sid}` }, (err, exists) => {
       if (err) {
         console.log(err)
@@ -24,7 +25,7 @@ function shortener () {
     })
   })
 }
-
+//確認輸入的內容是否為網址
 function validateForm (longURL) {
   const re = /http:\/\/|https:\/\//
   return re.test(longURL)
@@ -37,6 +38,7 @@ router.post('/', (req, res) => {
   } else if (!validateForm(longURL)) {
     return
   }
+  //從資料庫尋找是否有相同的網址
   Shortener.find({ url: `${longURL}` }, (err, result) => {
     const url = result
     if (err) {
@@ -48,6 +50,7 @@ router.post('/', (req, res) => {
         .then(obj => res.render('index', { sid: obj.sid }))
         .catch(error => console.error(error))
     } else if (result.length) {
+      //有相同的網址就直接產生相同的短網址
       res.render('index', { sid: url[0].sid })
     }
   })
